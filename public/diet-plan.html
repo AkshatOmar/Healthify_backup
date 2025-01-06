@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan</title>
+    <style>
+         /* Navbar Styles */
+         .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .cta-btn {
+            background: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #0d7c97;
+        }
+        .container {
+            background: #b4f36c;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        .hidden {
+            display: none;
+        }
+
+ /* animation background */
+        .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0.625rem 0.625rem 1.875rem rgba(0, 0, 0, 0.2), -0.625rem -0.625rem 1.875rem rgba(255, 255, 255, 0.2);
+    animation: float 6s ease-in-out infinite;
+    z-index: -1;
+    transform: translateZ(0);
+    transition: all 0.3s ease-in-out;
+    aspect-ratio: 1/1;
+}
+
+.circle1 {
+    width: clamp(6.25rem, 20vw, 12.5rem);
+    height: clamp(6.25rem, 20vw, 12.5rem);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.circle2 {
+    width: clamp(12.5rem, 40vw, 25rem);
+    height: clamp(12.5rem, 40vw, 25rem);
+    top: 20%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.circle3 {
+    width: clamp(4.6875rem, 15vw, 9.375rem);
+    height: clamp(4.6875rem, 15vw, 9.375rem);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1.25rem);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <p>Healthify</p>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="bmirandom.html">BMI Calculator</a></li>
+          <li><a href="expertGuidance.html">Expert Guidance</a></li>
+          <li><a href="bmiDietPlan.html">Diet Plans</a></li>
+        </ul>
+        <a href="LOGIN/login.html" class="cta-btn">Log out</a>
+    </nav>
+
+    <div class="container">
+        <h1>Diet Plan</h1>
+
+        <!-- Calorie Counter Section -->
+        <div class="form-group">
+            <label for="weight">Enter Your Weight (kg):</label>
+            <input type="number" id="weight" placeholder="Enter your weight" required>
+        </div>
+        <div class="form-group">
+            <label for="height">Enter Your Height (cm):</label>
+            <input type="number" id="height" placeholder="Enter your height" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Enter Your Age:</label>
+            <input type="number" id="age" placeholder="Enter your age" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Select Your Gender:</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <button id="calculateCaloriesButton">Calculate Calories</button>
+        <div class="result" id="calorieResult"></div>
+
+        <!-- Diet Type Selection Section -->
+        <div class="form-group hidden" id="dietTypeSection">
+            <label for="dietType">Choose Diet Type:</label>
+            <select id="dietType">
+                <option value="veg">Veg Diet</option>
+                <option value="nonveg">Non-Veg Diet</option>
+            </select>
+        </div>
+        <button id="dietButton" class="hidden">Get Diet Plan</button>
+        
+        <!-- Display the Diet Plan -->
+        <div class="result" id="dietResult"></div>
+    </div>
+
+    <!-- animation -->
+    <div class="decorative-elements">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+        </div>
+   
+
+    <script>
+        window.addEventListener('load', function() {
+            const bmiCategory = localStorage.getItem('bmiCategory');
+            const dietResult = document.getElementById('dietResult');
+            const calorieResult = document.getElementById('calorieResult');
+            const dietTypeSection = document.getElementById('dietTypeSection');
+            const dietButton = document.getElementById('dietButton');
+            
+            // Diet Plan Based on BMI Category (Underweight or Overweight)
+            if (bmiCategory === 'underweight') {
+                dietResult.innerText = 'You are underweight. We will calculate your calories and create a diet plan for weight gain.';
+            } else if (bmiCategory === 'overweight') {
+                dietResult.innerText = 'You are overweight. We will calculate your calories and create a diet plan for weight loss.';
+            }
+
+            // Clear the stored BMI category after use
+            localStorage.removeItem('bmiCategory');
+        });
+
+        // Calculate Calorie Requirement
+        document.getElementById('calculateCaloriesButton').addEventListener('click', function() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+
+            if (!weight || !height || !age || !gender) {
+                calorieResult.innerText = 'Please fill all fields to calculate calories.';
+                return;
+            }
+
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else if (gender === 'female') {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            const calorieNeed = Math.round(bmr);
+            calorieResult.innerText = `Your daily calorie requirement is approximately ${calorieNeed} calories.`;
+            dietTypeSection.classList.remove('hidden');
+            dietButton.classList.remove('hidden');
+        });
+
+        // Display Diet Plan Based on User's Choice (Veg or Non-Veg)
+        // Display Diet Plan Based on User's Choice (Veg or Non-Veg)
+document.getElementById('dietButton').addEventListener('click', function() {
+    const dietType = document.getElementById('dietType').value;
+    const calorieResultText = document.getElementById('calorieResult').innerText;
+
+    if (!dietType) {
+        dietResult.innerText = 'Please select a diet type.';
+        return;
+    }
+
+    let dietPlan;
+    if (dietType === "veg") {
+        if (calorieNeed === 200) {
+            dietPlan = "1 small apple with 1 tbsp peanut butter, or 1 boiled egg with a few baby carrots.";
+        } else if (calorieNeed === 400) {
+            dietPlan = "1 small avocado on whole-grain toast with a sprinkle of salt and pepper, or 1 cup oatmeal with 1 tsp maple syrup and ½ sliced banana.";
+        } else if (calorieNeed === 600) {
+            dietPlan = "Smoothie made with spinach, banana, Greek yogurt, and almond butter, or Oats porridge made with oats, almond milk, and flaxseeds.";
+        } else if (calorieNeed === 800) {
+            dietPlan = "Quinoa Salad with chickpeas, spinach, cucumber, tomatoes, and olive oil dressing, or Vegetable stir-fry with tofu and quinoa.";
+        } else if (calorieNeed === 1000) {
+            dietPlan = "Lentil curry with brown rice and steamed broccoli, or Vegetable stir-fry with tofu and quinoa.";
+        } else if (calorieNeed === 1200) {
+            dietPlan = "Chickpea stew with brown rice, or Vegan Buddha Bowl with quinoa, chickpeas, roasted sweet potatoes, avocado, cucumber, and tahini dressing.";
+        } else if (calorieNeed === 1400) {
+            dietPlan = "Vegan Buddha Bowl with quinoa, chickpeas, roasted sweet potatoes, avocado, cucumber, and tahini dressing, or Grilled vegetable kebabs with quinoa.";
+        } else if (calorieNeed === 1600) {
+            dietPlan = "Tofu stir-fry with mixed veggies and brown rice, or Vegan pasta with tomato sauce, sautéed veggies, and nutritional yeast.";
+        } else if (calorieNeed === 1800) {
+            dietPlan = "Pasta with marinara sauce, whole wheat pasta, and parmesan, or Chickpea and avocado wrap with roasted carrots.";
+        } else if (calorieNeed === 2000) {
+            dietPlan = "Tofu and vegetable stir-fry with quinoa, or Vegetarian burrito with black beans, avocado, rice, and veggies.";
+        } else if (calorieNeed === 2200) {
+            dietPlan = "Vegan lasagna with whole-wheat noodles, spinach, mushrooms, and low-fat ricotta cheese, or Quinoa bowl with chickpeas, roasted sweet potatoes, spinach, and tahini.";
+        } else if (calorieNeed === 2400) {
+            dietPlan = "Chickpea and avocado wrap with roasted sweet potatoes, or Vegan curry with lentils, coconut milk, and mixed vegetables.";
+        } else if (calorieNeed === 2600) {
+            dietPlan = "Tofu stir-fry with mixed vegetables and quinoa, or Quinoa salad with chickpeas, spinach, cucumber, avocado, and olive oil dressing.";
+        } else if (calorieNeed === 2800) {
+            dietPlan = "Vegan shepherd’s pie with lentils and mashed potatoes, or Chickpea stew with cooked chickpeas, tomatoes, spinach, and spices.";
+        } else if (calorieNeed === 3000) {
+            dietPlan = "Vegan pizza with cauliflower crust, mixed veggies, and cheese, or Tofu and vegetable stir-fry with quinoa.";
+        }
+    } else if (dietType === "non-veg") {
+        if (calorieNeed === 200) {
+            dietPlan = "1 boiled egg with a few baby carrots, or 1 small apple with 1 slice cheese.";
+        } else if (calorieNeed === 400) {
+            dietPlan = "1 small grilled chicken breast with quinoa, or Grilled salmon fillet with roasted vegetables.";
+        } else if (calorieNeed === 600) {
+            dietPlan = "Grilled chicken with steamed broccoli, or Tuna salad with lettuce, avocado, and olive oil dressing.";
+        } else if (calorieNeed === 800) {
+            dietPlan = "Grilled chicken breast with quinoa and roasted sweet potatoes, or Grilled salmon fillet with roasted vegetables.";
+        } else if (calorieNeed === 1000) {
+            dietPlan = "Salmon fillet with roasted vegetables and quinoa, or Grilled chicken breast with quinoa and roasted vegetables.";
+        } else if (calorieNeed === 1200) {
+            dietPlan = "Chicken casserole with vegetables and brown rice, or Grilled chicken with quinoa and roasted sweet potatoes.";
+        } else if (calorieNeed === 1400) {
+            dietPlan = "Beef stir-fry with brown rice and avocado, or Grilled salmon with quinoa and roasted vegetables.";
+        } else if (calorieNeed === 1600) {
+            dietPlan = "Grilled chicken with quinoa and roasted mixed vegetables, or Beef stir-fry with vegetables and brown rice.";
+        } else if (calorieNeed === 1800) {
+            dietPlan = "Grilled chicken with quinoa and roasted vegetables, or Beef stir-fry with brown rice and a side of avocado.";
+        } else if (calorieNeed === 2000) {
+            dietPlan = "Salmon fillet with roasted vegetables and quinoa, or Chicken breast with roasted sweet potatoes and steamed broccoli.";
+        } else if (calorieNeed === 2200) {
+            dietPlan = "Grilled chicken with quinoa and roasted vegetables, or Grilled salmon with quinoa and roasted vegetables.";
+        } else if (calorieNeed === 2400) {
+            dietPlan = "Grilled chicken with quinoa, roasted vegetables, and avocado, or Beef stir-fry with vegetables and brown rice.";
+        } else if (calorieNeed === 2600) {
+            dietPlan = "Chicken casserole with vegetables and 1 cup brown rice, or Grilled chicken with quinoa and roasted sweet potatoes.";
+        } else if (calorieNeed === 2800) {
+            dietPlan = "Grilled salmon with quinoa and roasted vegetables, or Chicken curry with brown rice and sautéed spinach.";
+        } else if (calorieNeed === 3000) {
+            dietPlan = "Grilled chicken with quinoa and roasted mixed vegetables, or Beef stir-fry with vegetables, brown rice, and a side of avocado.";
+        }
+    }
+
+    dietResult.innerText = `${dietPlan}\n\n${calorieResultText}`;
+});
+    </script>
+</body>
+</html>

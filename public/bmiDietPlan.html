@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Check</title>
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .cta-btn {
+            background: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #b4f36c;
+            padding-top: 60px; /* Offset content for fixed navbar */
+        }
+
+        .container {
+            background: #89ecbe;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #b3d41d;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #cc620b;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+         /* animation background */
+         .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0.625rem 0.625rem 1.875rem rgba(0, 0, 0, 0.2), -0.625rem -0.625rem 1.875rem rgba(255, 255, 255, 0.2);
+    animation: float 6s ease-in-out infinite;
+    z-index: -1;
+    transform: translateZ(0);
+    transition: all 0.3s ease-in-out;
+    aspect-ratio: 1/1;
+}
+
+.circle1 {
+    width: clamp(6.25rem, 20vw, 12.5rem);
+    height: clamp(6.25rem, 20vw, 12.5rem);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.circle2 {
+    width: clamp(12.5rem, 40vw, 25rem);
+    height: clamp(12.5rem, 40vw, 25rem);
+    top: 20%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.circle3 {
+    width: clamp(4.6875rem, 15vw, 9.375rem);
+    height: clamp(4.6875rem, 15vw, 9.375rem);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1.25rem);
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <p>Healthify</p>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="bmirandom.html">BMI Calculator</a></li>
+          <li><a href="expertGuidance.html">Expert Guidance</a></li>
+          <li><a href="bmiDietPlan.html">Diet Plans</a></li>
+        </ul>
+        <a href="LOGIN/login.html" class="cta-btn">Log out</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>BMI Check</h1>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="">Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" placeholder="Enter your weight" required>
+        </div>
+        <div class="form-group">
+            <label for="heightUnit">Height Unit:</label>
+            <select id="heightUnit">
+                <option value="cm">Centimeters (cm)</option>
+                <option value="ft_inch">Foot (ft) & Inch (in)</option>
+            </select>
+        </div>
+        <div class="form-group" id="heightCmField">
+            <input type="number" id="heightCm" placeholder="Height in cm">
+        </div>
+        <div class="form-group" id="heightFields" style="display: none;">
+            <input type="number" id="heightFt" placeholder="Feet" style="margin-bottom: 10px;">
+            <input type="number" id="heightInch" placeholder="Inches">
+        </div>
+        <button id="calculateButton">Calculate BMI</button>
+        <div class="result" id="bmiResult"></div>
+        <div class="form-group">
+            <label for="bmi">Enter Your BMI:</label>
+            <input type="number" id="bmi" placeholder="Enter your BMI" required>
+        </div>
+        <button id="bmiButton">Check BMI Category</button>
+        <div class="result" id="bmiResult"></div>
+    </div>
+     <!-- animation -->
+     <div class="decorative-elements">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+        </div>
+
+    <script>
+       document.getElementById('heightUnit').addEventListener('change', function() {
+    const heightUnit = this.value;
+    if (heightUnit === 'ft_inch') {
+        document.getElementById('heightFields').style.display = 'block';
+        document.getElementById('heightCmField').style.display = 'none';
+    } else {
+        document.getElementById('heightFields').style.display = 'none';
+        document.getElementById('heightCmField').style.display = 'block';
+    }
+});
+
+document.getElementById('calculateButton').addEventListener('click', function() {
+    const weight = parseFloat(document.getElementById('weight').value);
+    const heightUnit = document.getElementById('heightUnit').value;
+
+    let heightMeters = 0;
+
+    if (heightUnit === 'cm') {
+        const heightCm = parseFloat(document.getElementById('heightCm').value);
+        if (!heightCm || heightCm <= 0) {
+            document.getElementById('bmiResult').innerText = 'Please enter a valid height in centimeters.';
+            return;
+        }
+        heightMeters = heightCm / 100;
+    } else if (heightUnit === 'ft_inch') {
+        const heightFt = parseFloat(document.getElementById('heightFt').value);
+        const heightInch = parseFloat(document.getElementById('heightInch').value);
+
+        if (!heightFt || heightFt < 0 || !heightInch || heightInch < 0 || heightInch >= 12) {
+            document.getElementById('bmiResult').innerText = 'Please enter valid feet and inches values.';
+            return;
+        }
+        heightMeters = (heightFt * 0.3048) + (heightInch * 0.0254);
+    } else {
+        document.getElementById('bmiResult').innerText = 'Please select a valid height unit.';
+        return;
+    }
+
+    if (!weight || weight <= 0 || !heightMeters || heightMeters <= 0) {
+        document.getElementById('bmiResult').innerText = 'Please enter valid weight and height.';
+        return;
+    }
+
+    const bmi = (weight / (heightMeters * heightMeters)).toFixed(2);
+
+    let category = '';
+    if (bmi < 18.5) {
+        category = 'Underweight';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        category = 'Normal weight';
+    } else if (bmi >= 25 && bmi < 29.9) {
+        category = 'Overweight';
+    } else {
+        category = 'Obesity';
+    }
+
+    document.getElementById('bmiResult').innerText = `Your BMI is ${bmi} (${category}).`;
+
+    // Automatically populate the BMI in the next field for further actions
+    document.getElementById('bmi').value = bmi; // Assuming 'bmi' is the input field for the next part
+});
+
+document.getElementById('bmiButton').addEventListener('click', function() {
+    const bmi = parseFloat(document.getElementById('bmi').value);
+    const bmiResult = document.getElementById('bmiResult');
+
+    if (!bmi) {
+        bmiResult.innerText = 'Please enter a valid BMI.';
+        return;
+    }
+
+    if (bmi < 18.5) {
+        bmiResult.innerText = 'You are underweight. Redirecting to diet plan...';
+        localStorage.setItem('bmiCategory', 'underweight');
+        setTimeout(() => window.location.href = 'diet-plan.html', 2000);
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        bmiResult.innerText = 'Your BMI is normal. Maintain your current routine and diet.';
+    } else if (bmi >= 25) {
+        bmiResult.innerText = 'You are overweight. Redirecting to diet plan...';
+        localStorage.setItem('bmiCategory', 'overweight');
+        setTimeout(() => window.location.href = 'diet-plan.html', 2000);
+    }
+});
+
+    </script>
+</body>
+</html>

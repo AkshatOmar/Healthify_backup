@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <style> 
+    /* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  h1, h2 {
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  
+  p {
+    margin: 0 0 15px;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+  }
+  
+  .navbar .logo {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar ul li {
+    margin: 0 15px;
+  }
+  
+  .navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .cta-btn {
+    background: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: url("https://img.freepik.com/free-photo/slim-beautiful-woman-silhouette-doing-sports-morning-park-doing-yoga_285396-4315.jpg?ga=GA1.1.67468923.1731620768&semt=ais_hybrid") no-repeat center center/cover;
+    color: black;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+  }
+  
+  .hero-btn {
+    background: #ff6347;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  /* About Section */
+  .about {
+    padding: 50px 20px;
+    background: #f9f9f9;
+  }
+  
+  /* Features Section */
+  .features {
+    padding: 50px 20px;
+    background: #f4f4f9;
+}
+
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.feature {
+    flex: 1 1 calc(33% - 20px); /* Adjust the width for responsiveness */
+    margin: 10px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    
+}
+
+.feature h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+  
+  /* Contact Section */
+  .contact {
+    padding: 50px 20px;
+    background: #f4f4f9;
+    color: #333;
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact p {
+    margin-bottom: 40px;
+    color: #666;
+    font-size: 1em;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.contact-info h3 {
+    margin-top: 10px;
+    color: #444;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.contact-info p {
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+#contact-form {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#contact-form input, 
+#contact-form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#contact-form button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+#contact-form button:hover {
+    background: #ff6347;
+}
+
+  
+  /* Footer */
+  .footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <p>Healthify</p>
+    <ul class="nav-links">
+      <!-- <li><a href="#home">Home</a></li> -->
+      <li><a href="#about">About</a></li>
+      <li><a href="bmirandom.html">BMI Calculator</a></li>
+      <li><a href="expertGuidance.html">Expert Guidance</a></li>
+      <li><a href="bmiDietPlan.html">Diet Plans</a></li>
+  
+    </ul>
+    <a href="login.html" class="cta-btn">Log In</a>
+
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Healthify</h1>
+      <p>Your gateway to a better experience online.</p>
+      <a href="signup.html" class="hero-btn">Get Started</a>
+      <!-- <img src="LOGIN/image.png" alt="can't show image right now" width="1920" height="600"> -->
+
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>At Healthyfy, we believe that a healthy lifestyle is the key to unlocking your fullest potential. Our mission is to empower you to take control of your health by offering personalized guidance every step of the way. Whether you're looking to lose weight, gain muscle, or simply live a healthier life, our platform provides you with tailored solutions that match your unique needs.
+
+      We combine the power of technology with expert-driven advice to calculate your Body Mass Index (BMI) based on key factors like age, height, and weight. From there, we provide personalized diet plans designed to help you reach your specific goals.
+      
+      With Healthyfy, achieving your health goals has never been easier or more enjoyable. Let's make healthy living a part of your daily routine – together.
+      
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <!-- Features Section -->
+<section id="features" class="features">
+  <h2>Features</h2>
+  <div class="feature-list">
+    <div class="feature">
+      <h3>Personalized Diet Plans</h3>
+      <p>Get diet plans tailored to your unique goals and preferences, whether it’s weight loss, muscle gain, or overall health.</p>
+    </div>
+    <div class="feature">
+      <h3>BMI Calculator</h3>
+      <p>Calculate your Body Mass Index easily to understand your fitness level and set achievable health goals.</p>
+    </div>
+    <div class="feature">
+      <h3>Progress Tracking</h3>
+      <p>Monitor your health journey with regular updates and milestones to keep you motivated and on track.</p>
+    </div>
+    <div class="feature">
+      <h3>Expert Guidance</h3>
+      <p>Access tips and recommendations from certified health and nutrition experts to make informed choices.</p>
+    </div>
+    <div class="feature">
+      <h3>Community Support</h3>
+      <p>Join a supportive community to share your journey, celebrate successes, and stay motivated together.</p>
+    </div>
+    <div class="feature">
+      <h3>Secure Data</h3>
+      <p>Your privacy is our priority. All your data is securely stored and used only to enhance your experience.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+  <!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <p>Have questions or need assistance? Feel free to reach out. We’re here to help!</p>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Our Office</h3>
+        <p>123 Healthify Lane, Wellness City, USA</p>
+        <h3>Email Us</h3>
+        <p>support@healthify.com</p>
+        <h3>Call Us</h3>
+        <p>+1 800 123 4567</p>
+      </div>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+  </footer>
+
+  
+</body>
+</html>

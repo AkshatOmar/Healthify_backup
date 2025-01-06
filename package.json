@@ -1,0 +1,26 @@
+{
+  "name": "login-backend",
+  "version": "1.0.0",
+  "description": "Backend for login and user management system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "login",
+    "backend",
+    "nodejs",
+    "express",
+    "mysql"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.12.0"
+  }
+}
